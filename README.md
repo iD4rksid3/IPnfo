@@ -1,7 +1,5 @@
 # IPnfo
 
-**Author:** Mayed alm @id4rksid3
-
 IPnfo is a Python script designed to passively fetch and aggregate information related to a domain or an IP address. It uses multiple APIs including VirusTotal, Shodan, SecurityTrails, and AlienVault's OTX to retrieve this data.
 
 ## Features
