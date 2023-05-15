@@ -1,4 +1,4 @@
-# IPnfo v1.0
+# IPnfo
 
 **Author:** Mayed alm @id4rksid3
 
