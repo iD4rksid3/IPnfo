@@ -14,7 +14,7 @@ IPnfo is a Python script designed to passively fetch and aggregate information r
 ## Prerequisites
 
 1. Python 3.7 or later.
-2. Python libraries: `re`, `sys`, `json`, `configparser`, `concurrent.futures`, `colorama`, `multiprocessing`.
+2. Python libraries: `requests`, `configparser`, `colorama`.
 
 ## Installation
 
