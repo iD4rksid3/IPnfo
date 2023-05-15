@@ -21,6 +21,8 @@ IPnfo is a Python script designed to passively fetch and aggregate information r
 Clone the repository:
 
 `git clone https://github.com/id4rksid3/ipnfo.git`
+
+Change to repository directory:
 `cd ipnfo`
 
 Install required Python libraries:
