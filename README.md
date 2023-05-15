@@ -23,6 +23,7 @@ Clone the repository:
 `git clone https://github.com/id4rksid3/ipnfo.git`
 
 Change to repository directory:
+
 `cd ipnfo`
 
 Install required Python libraries:
