@@ -57,12 +57,46 @@ python3 ipnfo.py <ip_address or domain_name>
 The script will output information fetched from the APIs into a JSON file named `Resolved-<input>.json`.
 
 ## Sample output
-```html
-<div style="width: auto; height: 200px; overflow: auto; border: 1px solid black; padding: 10px;">
-kjrbnvknk;jfn
-  v;jFN;
-  JF;
-<\dev>```
+```bash
+{
+    "example.com": {
+        "dns_lookup": [
+            "93.184.216.34"
+        ],
+        "certificate_common_name": [
+            [
+                "www.example.org",
+                "example.net",
+                "example.edu",
+                "example.com",
+                "example.org",
+                "www.example.com",
+                "www.example.edu",
+                "www.example.net"
+            ]
+        ],
+        "security_trails": [
+            {
+                "current_dns": {
+                    "first_seen": "2018-09-10",
+                    "values": [
+                        {
+                            "h": null,
+                            "ip": "93.184.216.34",
+                            "ip_count": 948,
+                            "ip_organization": "MCI Communications Services, Inc. d/b/a Verizon Business"
+                        }
+                    ]
+                },
+                "subdomains": [
+                    "auth",
+                    "proxy",
+                    "support",
+                    "test1",
+                    "autoconfig",
+                    "your-cloud-controller",
+                    "test",
+  ```
 ## Note
 
 IPnfo is designed to perform passive information gathering. It should be used responsibly and in adherence to all applicable laws and regulations.
