@@ -35,16 +35,20 @@ Install required Python libraries:
 API keys for VirusTotal, Shodan, SecurityTrails, and AlienVault's OTX are required. These keys should be added to the `config_api.ini` file in the following format:
 
 [API_KEY]
+
 securitytrails = YOUR_SECURITYTRAILS_API_KEY
+
 virus_total = YOUR_VIRUSTOTAL_API_KEY
+
 shodan = YOUR_SHODAN_API_KEY
+
 otx = YOUR_ALIENVAULT_OTX_API_KEY
 
 If the configuration file is not found, the script will automatically generate one. Simply edit the created file with your API keys and run IPnfo again.
 
 ## Usage
 
-python3 ipnfo.py <ip_address or domain_name>
+`python3 ipnfo.py <ip_address or domain_name>`
 
 The script will output information fetched from the APIs into a JSON file named "Resolved-<input>.json".
 
