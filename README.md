@@ -56,6 +56,13 @@ python3 ipnfo.py <ip_address or domain_name>
 
 The script will output information fetched from the APIs into a JSON file named `Resolved-<input>.json`.
 
+## Sample output
+```html
+<div style="width: auto; height: 200px; overflow: auto; border: 1px solid black; padding: 10px;">
+kjrbnvknk;jfn
+  v;jFN;
+  JF;
+<\dev>```
 ## Note
 
 IPnfo is designed to perform passive information gathering. It should be used responsibly and in adherence to all applicable laws and regulations.
