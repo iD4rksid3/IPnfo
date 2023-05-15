@@ -96,6 +96,12 @@ The script will output information fetched from the APIs into a JSON file named 
                     "autoconfig",
                     "your-cloud-controller",
                     "test",
+                    .
+                    .
+                    .
+                    .
+                    .
+                    .
   ```
 ## Note
 
