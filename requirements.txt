@@ -1,0 +1,3 @@
+colorama==0.4.5
+OTXv2==1.5.12
+Requests==2.30.0
