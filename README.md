@@ -18,16 +18,20 @@ IPnfo is a Python script designed to passively fetch and aggregate information r
 
 Clone the repository:
 
-`git clone https://github.com/id4rksid3/ipnfo.git`
+```bash
+git clone https://github.com/id4rksid3/ipnfo.git
+```
 
 Change to repository directory:
+```bash
+cd ipnfo
+```
 
-`cd ipnfo`
 
 Install required Python libraries:
-
-`pip install -r requirements.txt`
-
+```bash
+pip install -r requirements.txt
+```
 ## Configuration
 
 API keys for VirusTotal, Shodan, SecurityTrails, and AlienVault's OTX are required. These keys should be added to the `config_api.ini` file in the following format:
@@ -47,10 +51,8 @@ If the configuration file is not found, the script will automatically generate o
 ## Usage
 
 ```bash
-python3 ipnfo.py example.com
+python3 ipnfo.py <ip_address or domain_name>
 ```
-
-`python3 ipnfo.py <ip_address or domain_name>`
 
 The script will output information fetched from the APIs into a JSON file named "Resolved-<input>.json".
 
