@@ -34,7 +34,7 @@ pip install -r requirements.txt
 ```
 ## Configuration
 
-API keys for VirusTotal, Shodan, SecurityTrails, and AlienVault's OTX are required. These keys should be added to the `config_api.ini` file in the following format:
+API keys for VirusTotal, Shodan, SecurityTrails, and AlienVault's OTX are required to get more information. These keys should be added to the `config_api.ini` file in the following format:
 
 [API_KEY]
 
