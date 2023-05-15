@@ -54,7 +54,7 @@ If the configuration file is not found, the script will automatically generate o
 python3 ipnfo.py <ip_address or domain_name>
 ```
 
-The script will output information fetched from the APIs into a JSON file named "Resolved-<input>.json".
+The script will output information fetched from the APIs into a JSON file named "Resolved- <input> .json".
 
 ## Note
 
