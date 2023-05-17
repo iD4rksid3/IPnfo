@@ -15,9 +15,11 @@ from time import sleep
 import multiprocessing
 from colorama import init, Fore
 from concurrent.futures import ThreadPoolExecutor
+
 ###IPnfo modules###
 from modules.cert_fetch import cert_info
-#from modules.tc_api import tc_api_ip, tc_api_domain #Threat Crowd is down..
+
+# from modules.tc_api import tc_api_ip, tc_api_domain #Threat Crowd is down..
 from modules.otx_api import otx_api_ip, otx_api_domain, otx_conf
 from modules.shodan_api import shodan_api_ip, shodan_conf
 from modules.vt_api import vt_api_ip, vt_api_domain, vt_conf
@@ -49,17 +51,20 @@ class ipnfo:
             self.securitytrails_api_key = securitytrails_conf()
             self.otx_api_key = otx_conf()
         except KeyError:
-            config["API_KEY"] = {"securitytrails":"", "virus_total":"", "shodan":"", "otx":""}
-            config.write(open('config_api.ini', 'w')) 
+            config["API_KEY"] = {
+                "securitytrails": "",
+                "virus_total": "",
+                "shodan": "",
+                "otx": "",
+            }
+            config.write(open("config_api.ini", "w"))
             exit(
-                    Fore.RED
-                    + "[E] Configuration file not found! creating one, edit it with api keys and run IPnfo again."
-                )     
+                Fore.RED
+                + "[E] Configuration file not found! creating one, edit it with api keys and run IPnfo again."
+            )
         init(autoreset=True)
         self.inpt = inpt
         self.reslove_func_ip(self.inpt)
-        
-      
 
     # func to performe reverse ip lookup and dns history/ ssl alt names
     def reslove_func_ip(self, inpt):
@@ -83,12 +88,9 @@ class ipnfo:
                 )
 
         # Fetching data and write it to json file
-        with open("Resolved-" + inpt.replace(":", "") + ".json", "w") as file_out_json:         
-            print(Fore.GREEN
-                  + "[i] Running: "
-                  + Fore.MAGENTA
-                  + inpt)
-            
+        with open("Resolved-" + inpt.replace(":", "") + ".json", "w") as file_out_json:
+            print(Fore.GREEN + "[i] Running: " + Fore.MAGENTA + inpt)
+
             # fetching the cert info usinf digicert ssltools
             with ThreadPoolExecutor() as executor:
                 cert = executor.submit(cert_info, inpt)
@@ -99,7 +101,7 @@ class ipnfo:
                     revers_lookup = executor.submit(rev_lookup_addr, ip)
                     sleep(0.1)
                     # Using Threat Crowd's API service to fetch resolutions history
-                    #threat_crowd_res = executor.submit(tc_api_ip, ip)
+                    # threat_crowd_res = executor.submit(tc_api_ip, ip)
                     if self.otx_api_key is not None:
                         otx_res = executor.submit(otx_api_ip, ip)
                         sleep(0.1)
@@ -130,7 +132,9 @@ class ipnfo:
                         )
                         shodan = executor.submit(shodan_conf)
                     if self.securitytrails_api_key is not None:
-                        sec_trails = executor.submit(securitytrails_api_domain, revers_lookup.result()[0])
+                        sec_trails = executor.submit(
+                            securitytrails_api_domain, revers_lookup.result()[0]
+                        )
                         sleep(0.1)
                     else:
                         print(
@@ -146,16 +150,12 @@ class ipnfo:
                     data[ip_]["certificate_common_name"] = (cert.result(),)
                     data[ip_]["security_trails"] = (sec_trails.result(),)
                     data[ip_]["virustotal_resolutions"] = (virus_total.result(),)
-                    #data[ip_]["threat_crowd_resolutions"] = (threat_crowd_res.result(),)
+                    # data[ip_]["threat_crowd_resolutions"] = (threat_crowd_res.result(),)
                     data[ip_]["otx_resolutions"] = (otx_res.result(),)
                     data[ip_]["shodan"] = (shodan.result(),)
                     json.dump(data, file_out_json, indent=4)
-                    print(Fore.GREEN + "[i] Done: " + Fore.MAGENTA + ip)                    
-                
-                
-                
-                
-                
+                    print(Fore.GREEN + "[i] Done: " + Fore.MAGENTA + ip)
+
                 elif match_domain_name:
                     domain = inpt
                     # resolve domain to IP using system's DNS
@@ -199,9 +199,9 @@ class ipnfo:
                             + "[W] Security Trails api key not found in config file! -- SKIPPING"
                         )
                         sec_trails = executor.submit(securitytrails_conf)
-                    
-                    #threat_crowd_res, threat_crowd_subd = executor.submit(tc_api_domain, domain).result()
-                    #sleep(0.1)
+
+                    # threat_crowd_res, threat_crowd_subd = executor.submit(tc_api_domain, domain).result()
+                    # sleep(0.1)
 
                     ###Writing to JSON file output###
                     data = {}
@@ -210,8 +210,8 @@ class ipnfo:
                     data[domain]["certificate_common_name"] = (cert.result(),)
                     data[domain]["security_trails"] = (sec_trails.result(),)
                     data[domain]["virustotal_resolutions"] = (virus_total.result(),)
-                    #data[domain]["threat_crowd_resolutions"] = (threat_crowd_res,)
-                    #data[domain]["threat_crowd_subdomains"] = (threat_crowd_subd,)
+                    # data[domain]["threat_crowd_resolutions"] = (threat_crowd_res,)
+                    # data[domain]["threat_crowd_subdomains"] = (threat_crowd_subd,)
                     data[domain]["otx_resolutions"] = (otx_res.result(),)
                     data[domain]["shodan"] = (shodan.result(),)
                     json.dump(data, file_out_json, indent=4)
